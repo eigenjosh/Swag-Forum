@@ -22,7 +22,7 @@ router.get('/forum/comments/:id', (req, res, next) => {
         })
 })
 
-router.comment('/forum/comments', (req, res, next) => {
+router.post('/forum/comments', (req, res, next) => {
     Comments.create(req.body)
         .then(comment => {
             let response = {
