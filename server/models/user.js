@@ -11,6 +11,7 @@ var schema = new mongoose.Schema({
   createDate: { type: Number, required: true, default: Date.now() },
   avatar: { type: String, default: '//placehold.it/200x200' }
 });
+
 module.exports = mongoose.model('User', schema)
 
 schema.pre('save', function (next) {
