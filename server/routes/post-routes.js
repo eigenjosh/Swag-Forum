@@ -49,9 +49,12 @@ router.put('/forum/posts/:id', (req, res, next) => {
 
 
 router.delete('/forum/posts/:id', (req, res, next) => {
-    Posts.findByIdAndRemove(req.params.id)
-        .then(() => {
-            res.send({ message: 'So much for that post' })
+    Posts.findById(req.params.id)
+        .then( post => {
+            if(post.userId === req.session.uid){
+                post.remove()
+                res.send({ message: 'So much for that post' })
+            }
         })
         .catch(err => {
             res.status(400).send({ Error: err })
