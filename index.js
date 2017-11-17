@@ -6,8 +6,9 @@ var sessions = require('./auth/sessions')
 var port = 3000
 
 //route variables
+var userRoutes = require('./auth/auth')
 var commentRoutes = require('./server/routes/comment-routes')
-var userRoutes = require('./server/routes/user-routes')
+// var userRoutes = require('./server/routes/user-routes')
 var postRoutes = require('./server/routes/post-routes')
 var viewRoutes = require('./server/routes/view-routes')
 
@@ -15,14 +16,13 @@ var viewRoutes = require('./server/routes/view-routes')
 server.use(bp.json())
 server.use(bp.urlencoded({extended: true}))
 server.use(sessions)
+server.use(userRoutes)
 ///register routes
 server.use(viewRoutes)
 
 server.use(Authenticate)
-
 server.use(commentRoutes)
 server.use(postRoutes)
-server.use(userRoutes)
 
 function Authenticate(req, res, next) {
     if (!req.session.uid) {
