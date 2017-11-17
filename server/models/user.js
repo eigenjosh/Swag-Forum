@@ -5,7 +5,7 @@ var ObjectId = Schema.Types.ObjectId
 const SALT_FACTOR = 10
 
 var schema = new mongoose.Schema({
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true, dropDups: true },
     email: { type: String, required: true, unique: true, dropDups: true },
     password: { type: String, required: true },
     createDate: { type: Number, required: true, default: Date.now() },
