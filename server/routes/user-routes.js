@@ -1,5 +1,5 @@
 let router = require('express').Router()
-let Users = require('../server/models/user')
+let Users = require('../models/user')
 
 
 

@@ -1,5 +1,5 @@
 let router = require('express').Router()
-let Comments = require('../server/models/comment')
+let Comments = require('../models/comment')
 
 
 
