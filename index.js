@@ -14,7 +14,7 @@ server.use(bp.json())
 server.use(bp.urlencoded({extended: true}))
 server.use(sessions)
 ///register routes
-server.use(getViewRoutes)
+server.use(viewRoutes)
 
 server.use(Authenticate)
 
