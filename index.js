@@ -3,7 +3,7 @@ var server = express()
 var bp = require('body-parser')
 var DBConnect = require('./config/mlab.js')
 var port = 3000
-a
+
 //route variables
 var commmentRoutes = require('./server/routes/comment-routes')
 var userRoutes = require('./server/routes/user-routes')
