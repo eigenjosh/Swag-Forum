@@ -1,0 +1,28 @@
+{
+  "name": "swag-forum",
+  "version": "1.0.0",
+  "description": "The best forum on the interwebs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eigenjosh/Swag-Forum.git"
+  },
+  "keywords": [
+    "Swag"
+  ],
+  "author": "Josh Eigen, Jaime Ambriz, Chase Shank, Cameron Sharp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eigenjosh/Swag-Forum/issues"
+  },
+  "homepage": "https://github.com/eigenjosh/Swag-Forum#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.3"
+  }
+}
