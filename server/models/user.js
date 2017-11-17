@@ -12,6 +12,8 @@ var schema = new mongoose.Schema({
     avatar: { type: String, default: '//placehold.it/200x200' }
 });
 
+module.exports = mongoose.model('User', schema)
+
 schema.pre('save', function (next) {
     var user = this;
     if (!user.isModified('password')) { // if the user is not changing their password or being created
@@ -41,4 +43,3 @@ schema.methods.validatePassword = function (password) {
 };
 
 
-module.exports = mongoose.model('User', schema)
