@@ -16,8 +16,8 @@ var viewRoutes = require('./server/routes/view-routes')
 server.use(bp.json())
 server.use(bp.urlencoded({extended: true}))
 server.use(sessions)
-server.use(userRoutes)
 ///register routes
+server.use(userRoutes)
 server.use(viewRoutes)
 
 server.use(Authenticate)
