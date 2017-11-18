@@ -43,6 +43,25 @@
 
     </div>
     <!-- /.container -->
+    <div class="form">
+        <form class = "form" onsubmit="app.controllers.swagController.register(event)">
+            <div class="form-group">
+                <label for="username"></label>
+                <input type="text" name = "username" class = "form-control" placeholder="username">
+            </div>
+            <div class="form-group">
+                <label for="email"></label>
+                <input type="text" name = "email" class = "form-control" placeholder="email">
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <input type="text" name = "password" class = "form-control" placeholder="password">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 
     <footer class="blog-footer">
     </footer>

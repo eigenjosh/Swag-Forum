@@ -17,11 +17,11 @@ function SwagService(){
 
     }
 
-    this.getPosts = function getPosts(){
+    this.getPosts = function getPosts(cb){
         $.get(baseUrl + '/forum/view/posts')
         .then(res => {
             posts = res
-            console.log(posts)
+            cb(posts)
         })
     }
 
@@ -30,6 +30,5 @@ function SwagService(){
 
 
 
- getPosts()
     
 }
