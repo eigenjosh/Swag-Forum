@@ -48,6 +48,10 @@ function SwagService() {
             .fail(logError)
     }
 
+    this.login = function login(getPosts){
+        $.post(baseUrl)
+    }
+
     this.getComments = function getComments(postId, cb) {
         $.get(baseUrl + `/forum/view/posts/${postId}/comments`)
             .then(res => {
