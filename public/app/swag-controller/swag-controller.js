@@ -7,12 +7,12 @@ function SwagController() {
         swagService.getPosts(drawPosts)
     }
 
-    function getComments(postId) {
+    this.getComments = function getComments(postId) {
+        debugger
         swagService.getComments(postId, drawComments)
     }
 
     function drawPosts(posts) {
-        debugger
         var template = ''
         for (var i = 0; i < posts.posts.length; i++) {
             var post = posts.posts[i];
@@ -33,7 +33,7 @@ function SwagController() {
                 </div>
             </div>
             <div class = "post-comments">
-                <button onclick="app.contollers.swagController.getComments(${post._id})">View</button>
+                <button onclick="app.controllers.swagController.getComments('${post._id}')">View</button>
             </div>
             `
         }
