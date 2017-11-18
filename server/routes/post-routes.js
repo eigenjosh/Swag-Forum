@@ -7,10 +7,10 @@ router.get('/forum/posts', (req, res, next) => {
     Posts.find({})
         .then(posts => {
             Users.find(posts.userId, 'username')
-            .then(users =>{
-                res.send(posts)
-            })
-        
+                .then(users => {
+                    res.send(posts)
+                })
+
         })
         .catch(err => {
             res.status(400).send({ Error: err })
@@ -99,15 +99,10 @@ router.get('/forum/posts/:id/comments', (req, res, next) => {
 })
 
 router.delete('/forum/posts/:id', (req, res, next) => {
-
-    Posts.findById(req.params.id)
+    Posts.remove({ userId: req.session.uid, _id: req.params.id })
         .then(post => {
-            console.log(post.userId.toString(), req.session.uid.toString())
-            if (post.userId.toString() == req.session.uid.toString()) {
-                post.remove()
-                res.send({ message: 'So much for that post' })
-            }
-            next()
+            res.send("I bet you a dollar, yo")
+
         })
         .catch(err => {
             res.status(400).send({ Error: err })
