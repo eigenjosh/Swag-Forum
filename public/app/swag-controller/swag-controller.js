@@ -8,7 +8,6 @@ function SwagController() {
     }
 
     this.getComments = function getComments(postId) {
-        debugger
         swagService.getComments(postId, drawComments)
     }
 
@@ -23,7 +22,7 @@ function SwagController() {
                 <div class="blog-post">
                     <h2 class="blog-post-title">${post.postTitle}</h2>
                     <p class="blog-post-meta">${post.createDate}
-                        <a href="#">${post.userId}</a>
+                        <a href="#">${post.username}</a>
                     </p>
                 </div>
                 <div class="votes">
@@ -45,8 +44,7 @@ function SwagController() {
     getPosts()
 
     function drawComments(comments){
-        debugger
-        var template = `<img src="${comments.posts.mediaUrl}">`;
+        var template = `<img src="${comments.posts.mediaUrl}" class = "col-md-8">`;
         for(i=0; i<comments.comments.length;i++){
             var comment = comments.comments[i]
             if(!comment.mediaUrl){
@@ -54,7 +52,7 @@ function SwagController() {
             }
             template += `
                 <div class = "row" id="post-comments">
-                    <div class = "col-md-8 col-md-offset-3">
+                    <div class = "col-md-10">
                     <p>${comment._id}</p>
                     <p>${comment.mediaUrl}</p>
                     <h5>${comment.body}</h5>
@@ -69,14 +67,18 @@ function SwagController() {
     this.register = function register(event) {
         event.preventDefault()
         var form = event.target
-        debugger
         swagService.regUser(form, getPosts)
     }
     this.newPost = function newPost(event) {
         event.preventDefault()
         var form = event.target
-        debugger
         swagService.createPost(form, getPosts)
+    }
+
+    this.login = function login(event){
+        event.preventDefault()
+        var form = event.target
+        swagService.login(form)
     }
 
 

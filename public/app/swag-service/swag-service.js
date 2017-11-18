@@ -3,7 +3,7 @@ function SwagService() {
     var comments = []
     var posts = []
     var sessionUID = []
-    var activePost = {}
+    var activeUser = {}
 
     function logError(err) {
         console.error(err)
@@ -17,12 +17,17 @@ function SwagService() {
 
     function BuildPost(form) {
         this.postTitle = form.postTitle.value,
-            this.mediaUrl = form.mediaUrl.value
+        this.mediaUrl = form.mediaUrl.value
     }
 
     function BuildComment(form) {
         this.body = form.body.value,
             this.mediaUrl = form.mediaUrl.value
+    }
+
+    function BuildLogin(form){
+        this.email = form.email.value,
+        this.password = form.password.value
     }
 
     this.getPosts = function getPosts(cb) {
@@ -48,8 +53,13 @@ function SwagService() {
             .fail(logError)
     }
 
-    this.login = function login(getPosts){
-        $.post(baseUrl)
+    this.login = function login(form){
+        var buildLogin = new BuildLogin(form)
+        $.post(baseUrl + '/login', buildLogin)
+            .then(res => {
+                console.log(res)
+            })
+            .fail(logError)
     }
 
     this.getComments = function getComments(postId, cb) {
