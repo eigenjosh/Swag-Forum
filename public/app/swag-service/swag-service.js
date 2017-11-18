@@ -14,14 +14,14 @@ function SwagService() {
             this.password = form.password.value
     }
 
-    function BuildPost(config) {
-        this.postTitle = config.postTitle.value,
-            this.mediaUrl = config.mediaUrl.value
+    function BuildPost(form) {
+        this.postTitle = form.postTitle.value,
+            this.mediaUrl = form.mediaUrl.value
     }
 
-    function BuildComment(config) {
-        this.body = config.body.value,
-            this.mediaUrl = config.mediaUrl.value
+    function BuildComment(form) {
+        this.body = form.body.value,
+            this.mediaUrl = form.mediaUrl.value
     }
 
     this.getPosts = function getPosts(cb) {
@@ -51,7 +51,7 @@ function SwagService() {
 
 
 
-    getPosts()
+    // getPosts()
 
 
 }
