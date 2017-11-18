@@ -23,7 +23,6 @@ function SwagController() {
                     <p class="blog-post-meta">${post.createDate}
                         <a href="#">${post.userId.username}</a>
                     </p>
-                     onclick="app.controllers.swagController.getComments('${post._id}')"
                 </div>
                 <div class="votes">
                     <span class = "glyphicon glyphicon-arrow-up"></span>
@@ -54,6 +53,7 @@ function SwagController() {
                 <div class = "row" id="post-comments">
                     <div class = "col-md-10 outline">
                     <p>${comment.mediaUrl}</p>
+                    <i class="glyphicon glyphicon-trash pull-right" onclick="app.controllers.swagController.removeComment('${comment.postId}','${comment._id}')"></i>
                     <h5><strong>${comment.userId.username}</strong></h5>
                     <h4>${comment.body}</h4>
                     </div>
