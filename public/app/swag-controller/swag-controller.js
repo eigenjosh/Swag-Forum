@@ -17,9 +17,9 @@ function SwagController() {
             var post = posts[i];
             template += `
             <div class="col-sm-10 blog-main">
-                <img src="${post.mediaUrl}" alt="" class="col-sm-2">
+                <img src="${post.mediaUrl}" alt="" class="col-sm-2 photo">
                 <div class="blog-post">
-                    <a><h2 class="blog-post-title" onclick="app.controllers.swagController.getComments('${post._id}')">${post.postTitle}</h2></a>
+                    <a><h2 class="blog-post-title" style="cursor: pointer" onclick="app.controllers.swagController.getComments('${post._id}')">${post.postTitle}</h2></a>
                     <p class="blog-post-meta">${post.createDate}
                         <a href="#">${post.userId.username}</a>
                     </p>
@@ -52,16 +52,18 @@ function SwagController() {
             }
             template += `
                 <div class = "row" id="post-comments">
-                    <div class = "col-md-10">
+                    <div class = "col-md-10 outline">
                     <p>${comment.mediaUrl}</p>
-                    <h5>${comment.body}</h5>
-                    <h4>${comment.userId.username}</h4>
-                    <i class="glyphicon glyphicon-trash pull-right" onclick="app.controllers.swagController.removeComment('${comment.postId}', '${comment._id}')"></i>
+                    <h5 style="cursor: pointer"><strong>${comment.userId.username}</strong></h5>
+                    <h4>${comment.body}</h4>
                     </div>
                 </div>
             `;
         }
-        template += `  <form class="form" onsubmit="app.controllers.swagController.createComment(event,'${comment.postId}')">
+        template += `  
+        <div class="row">
+        <div class="col-xs-4">
+        <form class="form" onsubmit="app.controllers.swagController.createComment(event,'${comment.postId}')">
         <div class="form-group">
             <label for="body"></label>
             <input type="text" name="body" class="form-control text-center" placeholder="comment">
@@ -73,7 +75,9 @@ function SwagController() {
         <div class="form-group text-center">
             <button class="btn btn-success" type="submit">Submit</button>
         </div>
-    </form>`
+    </form>
+    </div>
+    </div>`
         postFeedElem.innerHTML = template
     }
 
