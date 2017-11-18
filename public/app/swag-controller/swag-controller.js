@@ -1,22 +1,22 @@
-function SwagController(){
+function SwagController() {
     var swagService = new SwagService()
     var posts = [{
         votes: 0,
         mediaUrl: "//placehold.it/200x200",
         postTitle: "{type: String, required: true}",
         createDate: Date.now()
-        }]
-    
+    }]
+
     var postFeedElem = document.getElementById('post-feed')
 
-    function getPosts(){
+    function getPosts() {
         swagService.getPosts(drawPosts)
     }
 
-    function drawPosts(posts){
+    function drawPosts(posts) {
         var template = ''
-        for (var i = 0; i<posts.length;i++){
-            var post = posts[i];
+        for (var i = 0; i < posts.posts.length; i++) {
+            var post = posts.posts[i];
             template += `
             <div class="col-sm-10 blog-main">
                 <img src="${post.mediaUrl}" alt="" class="col-sm-2">
@@ -42,5 +42,11 @@ function SwagController(){
 
 
     }
-    drawPosts(posts)
+    getPosts()
+
+    this.register = function register(event){
+        event.preventDefault()
+        var form = event.target
+        swagService.regUser(form)
+    }
 }
