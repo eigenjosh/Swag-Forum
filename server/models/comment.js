@@ -6,7 +6,7 @@ var schema = new mongoose.Schema({
     votes: { type: Number, default: 0 },
     body: { type: String, required: true },
     mediaUrl: { type: String },
-    createDate: {type: Number, required: true, default: Date.now()},
+    createDate: {type: Number},
     userId: { type: ObjectId, required: true, ref: 'User' },
     postId: { type: ObjectId, required: true, ref: 'Post' },
     

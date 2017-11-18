@@ -40,6 +40,7 @@ function SwagService() {
 
     this.createPost = function createPost(form, getPosts) {
         var newPost = new BuildPost(form)
+        debugger
         $.post(baseUrl + '/forum/posts', newPost)
             .then(getPosts)
             .fail(logError)
