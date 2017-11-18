@@ -60,7 +60,10 @@ function SwagController() {
                 </div>
             `;
         }
-        template += `  <form class="form" onsubmit="app.controllers.swagController.createComment(event,'${comment.postId}')">
+        template += `  
+        <div class="row">
+        <div class="col-xs-4">
+        <form class="form" onsubmit="app.controllers.swagController.createComment(event,'${comment.postId}')">
         <div class="form-group">
             <label for="body"></label>
             <input type="text" name="body" class="form-control text-center" placeholder="comment">
@@ -72,7 +75,9 @@ function SwagController() {
         <div class="form-group text-center">
             <button class="btn btn-success" type="submit">Submit</button>
         </div>
-    </form>`
+    </form>
+    </div>
+    </div>`
         postFeedElem.innerHTML = template
     }
 
