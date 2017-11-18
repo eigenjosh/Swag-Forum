@@ -1,19 +1,25 @@
-function SwagService(){
+function SwagService() {
     var baseUrl = 'http://localhost:3000'
     var comments = []
     var posts = []
     var sessionUID = []
 
-    function logError(err){
+    function logError(err) {
         console.error(err)
     }
 
-    function Post(config){
-        this.postTitle = config.postTitle.value
-        this.mediaUrl= config.mediaUrl.value
+    function BuildUser(form) {
+        this.username = form.username.value,
+            this.email = form.email.value,
+            this.password = form.password.value
     }
 
-    function Comment(config){
+    function Post(config) {
+        this.postTitle = config.postTitle.value
+        this.mediaUrl = config.mediaUrl.value
+    }
+
+    function Comment(config) {
 
     }
 
@@ -24,11 +30,18 @@ function SwagService(){
             cb(posts)
         })
     }
+    this.regUser = function regUser(form, getPosts) {
+        newUser = new BuildUser(form)
+        $.post(baseUrl + '/register')
+        .then(getPosts)
+    }
 
 
 
 
 
+
+    getPosts()
 
     
 }
