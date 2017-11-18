@@ -8,6 +8,10 @@ body {
   padding: 3px
 }
 
+.outline {
+  outline: 1px solid white;
+}
+
 .blog-header {
   text-align: center;
   font-family: Haettenschweiler;

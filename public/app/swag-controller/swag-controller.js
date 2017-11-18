@@ -52,10 +52,10 @@ function SwagController() {
             }
             template += `
                 <div class = "row" id="post-comments">
-                    <div class = "col-md-10">
+                    <div class = "col-md-10 outline">
                     <p>${comment.mediaUrl}</p>
-                    <h5>${comment.body}</h5>
-                    <h4>${comment.userId.username}</h4>
+                    <h5 style="cursor: pointer"><strong>${comment.userId.username}</strong></h5>
+                    <h4>${comment.body}</h4>
                     </div>
                 </div>
             `;
