@@ -17,8 +17,7 @@ function SwagService(){
 
     }
 
-    function getPosts(){
-       debugger
+    this.getPosts = function getPosts(){
         $.get(baseUrl + '/forum/view/posts')
         .then(res => {
             posts = res
