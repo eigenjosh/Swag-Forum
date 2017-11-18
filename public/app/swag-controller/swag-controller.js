@@ -44,6 +44,28 @@ function SwagController() {
     }
     getPosts()
 
+    function drawComments(comments){
+        debugger
+        var template = `<img src="${comments.posts.mediaUrl}">`;
+        for(i=0; i<comments.comments.length;i++){
+            var comment = comments.comments[i]
+            if(!comment.mediaUrl){
+                comment.mediaUrl = ""
+            }
+            template += `
+                <div class = "row" id="post-comments">
+                    <div class = "col-md-8 col-md-offset-3">
+                    <p>${comment._id}</p>
+                    <p>${comment.mediaUrl}</p>
+                    <h5>${comment.body}</h5>
+                    <h4>${comment.username}</h4>
+                    </div>
+                </div>
+            `;
+        }
+        postFeedElem.innerHTML = template
+    }
+
     this.register = function register(event) {
         event.preventDefault()
         var form = event.target
