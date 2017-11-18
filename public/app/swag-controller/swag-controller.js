@@ -23,7 +23,7 @@ function SwagController() {
                 <div class="blog-post">
                     <h2 class="blog-post-title">${post.postTitle}</h2>
                     <p class="blog-post-meta">${post.createDate}
-                        <a href="#">${post.user}</a>
+                        <a href="#">${post.username}</a>
                     </p>
                 </div>
                 <div class="votes">
