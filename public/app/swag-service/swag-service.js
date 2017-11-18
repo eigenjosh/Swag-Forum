@@ -77,7 +77,14 @@ function SwagService() {
             .then(getComments(postId))
             .fail(logError)
     }
-
+    this.removeComment = function removeComment(postId, commentId, getComments){
+		$.ajax({
+			method: 'DELETE',
+			url: baseUrl + `/forum/posts/${postId}/comments/${commentId}`
+		})
+			.then(getComments(postId))
+			.fail(logError)
+    }
 
 
 

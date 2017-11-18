@@ -56,6 +56,7 @@ function SwagController() {
                     <p>${comment.mediaUrl}</p>
                     <h5>${comment.body}</h5>
                     <h4>${comment.userId.username}</h4>
+                    <i class="glyphicon glyphicon-trash pull-right" onclick="app.controllers.swagController.removeComment('${comment.postId}', '${comment._id}')"></i>
                     </div>
                 </div>
             `;
@@ -98,5 +99,7 @@ function SwagController() {
         var form = event.target
         swagService.createComment(form, postId, this.getComments)
     }
-
+    this.removeComment = function removeComment(postId,  commentId){
+        swagService.removeComment(postId, commentId, this.getComments)
+    }
 }
