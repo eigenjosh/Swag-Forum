@@ -24,12 +24,12 @@ function SwagService() {
             this.mediaUrl = config.mediaUrl.value
     }
 
-    this.getPosts = function getPosts(cb){
+    this.getPosts = function getPosts(cb) {
         $.get(baseUrl + '/forum/view/posts')
-        .then(res => {
-            posts = res
-            cb(posts)
-        })
+            .then(res => {
+                posts = res
+                cb(posts)
+            })
     }
     this.regUser = function regUser(form, getPosts) {
         var newUser = new BuildUser(form)
@@ -42,7 +42,6 @@ function SwagService() {
         var newPost = new BuildPost(form)
         $.post(baseUrl + '/forum/posts', newPost)
             .then(getPosts)
-            res.send("Post successfully created")
             .fail(logError)
     }
 
@@ -54,5 +53,5 @@ function SwagService() {
 
     getPosts()
 
-    
+
 }
