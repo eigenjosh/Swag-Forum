@@ -17,9 +17,9 @@ function SwagController() {
             var post = posts[i];
             template += `
             <div class="col-sm-10 blog-main">
-                <img src="${post.mediaUrl}" alt="" class="col-sm-2">
+                <img src="${post.mediaUrl}" alt="" class="col-sm-2 photo">
                 <div class="blog-post">
-                    <a><h2 class="blog-post-title" onclick="app.controllers.swagController.getComments('${post._id}')">${post.postTitle}</h2></a>
+                    <a><h2 class="blog-post-title" style="cursor: pointer" onclick="app.controllers.swagController.getComments('${post._id}')">${post.postTitle}</h2></a>
                     <p class="blog-post-meta">${post.createDate}
                         <a href="#">${post.userId.username}</a>
                     </p>

@@ -2,6 +2,11 @@ body {
   background-color: rgba(11, 107, 11, 0.13);
 
 }
+.photo{
+  height: 23%;
+  width: 23%;
+  padding: 3px
+}
 
 .blog-header {
   text-align: center;
