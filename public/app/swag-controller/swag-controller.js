@@ -47,6 +47,7 @@ function SwagController() {
     this.register = function register(event){
         event.preventDefault()
         var form = event.target
+        debugger
         swagService.regUser(form)
     }
 }

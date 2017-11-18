@@ -34,6 +34,7 @@ function SwagService() {
         newUser = new BuildUser(form)
         $.post(baseUrl + '/register')
         .then(getPosts)
+        console.log()
     }
 
 
@@ -41,7 +42,7 @@ function SwagService() {
 
 
 
-    getPosts()
+    // getPosts()
 
     
 }
