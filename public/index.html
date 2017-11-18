@@ -12,7 +12,7 @@
 
 <body>
 
-    <div class="container hidden">
+    <!-- <div class="container hidden">
         <div class="panel">
             <form class="form-signin">
                 <h2 class="form-signin-heading">Please sign in</h2>
@@ -26,7 +26,7 @@
             </form>
         </div>
 
-    </div>
+    </div> -->
     <!-- /container -->
 
 
@@ -44,18 +44,33 @@
     </div>
     <!-- /.container -->
     <div class="form">
-        <form class = "form" onsubmit="app.controllers.swagController.register(event)">
+        <form class="form" onsubmit="app.controllers.swagController.register(event)">
             <div class="form-group">
                 <label for="username"></label>
-                <input type="text" name = "username" class = "form-control" placeholder="username">
+                <input type="text" name="username" class="form-control" placeholder="username">
             </div>
             <div class="form-group">
                 <label for="email"></label>
-                <input type="text" name = "email" class = "form-control" placeholder="email">
+                <input type="text" name="email" class="form-control" placeholder="email">
             </div>
             <div class="form-group">
                 <label for="password"></label>
-                <input type="text" name = "password" class = "form-control" placeholder="password">
+                <input type="text" name="password" class="form-control" placeholder="password">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="post-form">
+        <form class="form" onsubmit="app.controllers.swagController.newPost(event)">
+            <div class="form-group">
+                <label for="title"></label>
+                <input type="text" name="postTitle" class="form-control" placeholder="title">
+            </div>
+            <div class="form-group">
+                <label for="mediaUrl"></label>
+                <input type="text" name="mediaUrl" class="form-control" placeholder="Your Image Here">
             </div>
             <div class="form-group">
                 <button class="btn btn-success" type="submit">Submit</button>

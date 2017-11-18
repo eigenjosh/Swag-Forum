@@ -50,4 +50,12 @@ function SwagController() {
         debugger
         swagService.regUser(form, getPosts)
     }
+    this.newPost = function newPost(event){
+        event.preventDefault()
+        var form = event.target
+        debugger
+        swagService.createPost(form, getPosts)
+    }
+
+
 }
