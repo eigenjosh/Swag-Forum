@@ -27,6 +27,8 @@ function SwagService() {
     this.getPosts = function getPosts(cb) {
         $.get(baseUrl + '/forum/view/posts')
             .then(res => {
+                res.userId = null
+                delete res.userId
                 posts = res
                 cb(posts)
             })

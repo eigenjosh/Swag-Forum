@@ -4,6 +4,8 @@ let Posts = require('../models/post')
 router.get('/forum/posts', (req, res, next) => {
     Posts.find({})
         .then(posts => {
+            posts.userId = null
+            delete posts.userId
             res.send(posts)
         })
         .catch(err => {

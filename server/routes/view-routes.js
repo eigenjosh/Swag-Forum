@@ -6,6 +6,8 @@ router.get('/forum/view/posts', (req, res, next) => {
     var view = {}
     Posts.find({})
         .then(post => {
+            post.userId = null
+            delete post.userId
             view.posts = post
             res.send(view)
         })
