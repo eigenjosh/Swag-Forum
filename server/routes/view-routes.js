@@ -1,14 +1,17 @@
+
 var Comments = require('../models/comment')
 var Users = require('../models/user')
 var Posts = require('../models/post')
 var router = require('express').Router()
 
 router.get('/forum/view/posts', (req, res, next) => {
-    var view = {}
-    Posts.find({})
-        .then(post => {
-            view.posts = post
-            res.send(view)
+    Posts.find({}).populate({
+        path: 'userId',
+        model: 'User',
+        select: { 'username': 1 },
+    })
+        .then(posts => {
+            res.send(posts)
         })
         .catch(err => {
             res.status(400).send({ Error: err })
@@ -30,10 +33,10 @@ router.get('/forum/view/posts/:id/comments', (req, res, next) => {
 
                     })
                         .then(comments => {
-                            var temp = []
-                            for (comment in comments) {
-                                Users.findById(comment.userId)
-                            }
+                            // var temp = []
+                            // for (comment in comments) {
+                            //     Users.findById(comment.userId)
+                            // }
                             view.comments = comments
                             res.send(view)
                         })

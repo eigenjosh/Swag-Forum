@@ -17,7 +17,7 @@ function SwagService() {
 
     function BuildPost(form) {
         this.postTitle = form.postTitle.value,
-        this.mediaUrl = form.mediaUrl.value
+            this.mediaUrl = form.mediaUrl.value
     }
 
     function BuildComment(form) {
@@ -25,9 +25,9 @@ function SwagService() {
             this.mediaUrl = form.mediaUrl.value
     }
 
-    function BuildLogin(form){
+    function BuildLogin(form) {
         this.email = form.email.value,
-        this.password = form.password.value
+            this.password = form.password.value
     }
 
     this.getPosts = function getPosts(cb) {
@@ -53,7 +53,7 @@ function SwagService() {
             .fail(logError)
     }
 
-    this.login = function login(form){
+    this.login = function login(form) {
         var buildLogin = new BuildLogin(form)
         $.post(baseUrl + '/login', buildLogin)
             .then(res => {
@@ -71,7 +71,12 @@ function SwagService() {
             })
             .fail(logError)
     }
-
+    this.createComment = function createComment(form, postId, getComments) {
+        var newComment = new BuildComment(form)
+        $.post(baseUrl + `/forum/posts/${postId}/comments`, newComment)
+            .then(getComments(postId))
+            .fail(logError)
+    }
 
 
 

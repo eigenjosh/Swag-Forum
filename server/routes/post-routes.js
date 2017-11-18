@@ -6,7 +6,7 @@ var Users = require('../models/user')
 router.get('/forum/posts', (req, res, next) => {
     Posts.find({})
         .then(posts => {
-            Users.findById(posts.userId, 'username')
+            Users.find(posts.userId, 'username')
             .then(users =>{
                 res.send(posts)
             })

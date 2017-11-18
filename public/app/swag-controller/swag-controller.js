@@ -13,18 +13,17 @@ function SwagController() {
 
     function drawPosts(posts) {
         var template = ''
-        for (var i = 0; i < posts.posts.length; i++) {
-            var post = posts.posts[i];
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i];
             template += `
             <div class="col-sm-10 blog-main">
-            <p>${post.userId}</p>
                 <img src="${post.mediaUrl}" alt="" class="col-sm-2">
                 <div class="blog-post">
-                    <h2 class="blog-post-title">${post.postTitle}</h2>
+                    <a><h2 class="blog-post-title" onclick="app.controllers.swagController.getComments('${post._id}')">${post.postTitle}</h2></a>
                     <p class="blog-post-meta">${post.createDate}
-                        <a href="#">${post.username}</a>
+                        <a href="#">${post.userId.username}</a>
                     </p>
-                    <button onclick="app.controllers.swagController.getComments('${post._id}')">View</button>
+                     onclick="app.controllers.swagController.getComments('${post._id}')"
                 </div>
                 <div class="votes">
                     <span class = "glyphicon glyphicon-arrow-up"></span>
@@ -61,6 +60,19 @@ function SwagController() {
                 </div>
             `;
         }
+        template += `  <form class="form" onsubmit="app.controllers.swagController.createComment(event,'${comment.postId}')">
+        <div class="form-group">
+            <label for="body"></label>
+            <input type="text" name="body" class="form-control text-center" placeholder="comment">
+        </div>
+        <div class="form-group">
+            <label for="mediaUrl"></label>
+            <input type="text" name="mediaUrl" class="form-control text-center" placeholder="image link">
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+    </form>`
         postFeedElem.innerHTML = template
     }
 
@@ -81,5 +93,10 @@ function SwagController() {
         swagService.login(form)
     }
 
+    this.createComment = function createComment(event, postId){
+        event.preventDefault()
+        var form = event.target
+        swagService.createComment(form, postId, this.getComments)
+    }
 
 }
