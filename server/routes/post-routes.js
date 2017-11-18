@@ -20,8 +20,19 @@ router.get('/forum/posts/:id', (req, res, next) => {
             res.status(400).send({ Error: err })
         })
 })
+// GET COMMENTS BY POSTID
+// router.get('/forum/posts/:id/comments', (req, res, next) => {
+//     Comments.find({postId: req.params.id})
+//         .then(comments => {
+//             res.send(comments)
+//         })
+//         .catch(err => {
+//             res.status(400).send({ Error: err })
+//         })
+// })
 
 router.post('/forum/posts', (req, res, next) => {
+    req.body.userId = req.session.uid
     Posts.create(req.body)
         .then(post => {
             let response = {
@@ -52,7 +63,8 @@ router.delete('/forum/posts/:id', (req, res, next) => {
 
     Posts.findById(req.params.id)
         .then( post => {
-            if(post.userId === req.session.uid){
+            console.log(post.userId.toString(), req.session.uid.toString())
+            if(post.userId.toString() == req.session.uid.toString()){
                 post.remove()
                 res.send({ message: 'So much for that post' })
             }
