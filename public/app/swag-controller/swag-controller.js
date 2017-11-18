@@ -13,6 +13,10 @@ function SwagController() {
         swagService.getPosts(drawPosts)
     }
 
+    function getComments(postId) {
+        swagService.getComments(postId, drawComments)
+    }
+
     function drawPosts(posts) {
         var template = ''
         for (var i = 0; i < posts.posts.length; i++) {
@@ -33,7 +37,7 @@ function SwagController() {
                 </div>
             </div>
             <div class = "post-comments">
-                
+                <button onclick="app.contollers.swagController.getComments(${post._id})">View</button>
             </div>
             `
         }
@@ -44,13 +48,13 @@ function SwagController() {
     }
     getPosts()
 
-    this.register = function register(event){
+    this.register = function register(event) {
         event.preventDefault()
         var form = event.target
         debugger
         swagService.regUser(form, getPosts)
     }
-    this.newPost = function newPost(event){
+    this.newPost = function newPost(event) {
         event.preventDefault()
         var form = event.target
         debugger

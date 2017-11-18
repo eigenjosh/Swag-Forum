@@ -3,6 +3,7 @@ function SwagService() {
     var comments = []
     var posts = []
     var sessionUID = []
+    var activePost = {}
 
     function logError(err) {
         console.error(err)
@@ -40,9 +41,14 @@ function SwagService() {
 
     this.createPost = function createPost(form, getPosts) {
         var newPost = new BuildPost(form)
-        debugger
         $.post(baseUrl + '/forum/posts', newPost)
             .then(getPosts)
+            .fail(logError)
+    }
+
+    this.getComments = function getComments(postId, getComments) {
+        $.get(baseUrl + `/forum/view/posts/${postId}/comments`)
+            .then(getComments)
             .fail(logError)
     }
 
