@@ -1,9 +1,17 @@
+import { Schema, Mongoose, model, modelNames } from "mongoose";
+import { Module } from "module";
+import { Server } from "http";
+
 function SwagService() {
     var baseUrl = 'http://localhost:3000'
     var comments = []
     var posts = []
     var sessionUID = []
     var activeUser = {}
+    var db = {
+        voteCount: 0,
+        votes: {}
+    }
 
     function logError(err) {
         console.error(err)
@@ -11,23 +19,25 @@ function SwagService() {
 
     function BuildUser(form) {
         this.username = form.username.value,
-            this.email = form.email.value,
-            this.password = form.password.value
+        this.email = form.email.value,
+        this.password = form.password.value
     }
 
     function BuildPost(form) {
         this.postTitle = form.postTitle.value,
-            this.mediaUrl = form.mediaUrl.value
+        this.mediaUrl = form.mediaUrl.value
+        this.votes = {}
     }
 
     function BuildComment(form) {
         this.body = form.body.value,
-            this.mediaUrl = form.mediaUrl.value
+        this.mediaUrl = form.mediaUrl.value
+        this.votes = {}
     }
 
     function BuildLogin(form) {
         this.email = form.email.value,
-            this.password = form.password.value
+        this.password = form.password.value
     }
 
     this.getPosts = function getPosts(cb) {
@@ -86,7 +96,19 @@ function SwagService() {
 			.fail(logError)
     }
 
-
+    this.tallyVotes = function tallyVotes(){
+        var votes = Object.values(db.votes)
+        var sorted = {up:0, down:0}
+        for(var i=0;i<votes.length;i++){
+            var vote = votes[i];
+            if(vote == 1){
+                sorted.up++
+            } else if(vote == -1){
+                sorted.down++
+            }
+        }
+        return `Up: ${sorted.up}; Down: ${sorted.down}`
+    }
 
 
 
