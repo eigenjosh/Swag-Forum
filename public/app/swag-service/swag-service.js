@@ -52,7 +52,7 @@ function SwagService() {
 
 
 
-    getPosts()
+    // getPosts()
 
     
 }

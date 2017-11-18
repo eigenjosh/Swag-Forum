@@ -48,6 +48,6 @@ function SwagController() {
         event.preventDefault()
         var form = event.target
         debugger
-        swagService.regUser(form)
+        swagService.regUser(form, getPosts)
     }
 }
