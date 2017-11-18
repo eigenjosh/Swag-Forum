@@ -11,23 +11,25 @@ function SwagService() {
 
     function BuildUser(form) {
         this.username = form.username.value,
-            this.email = form.email.value,
-            this.password = form.password.value
+        this.email = form.email.value,
+        this.password = form.password.value
     }
 
     function BuildPost(form) {
         this.postTitle = form.postTitle.value,
-            this.mediaUrl = form.mediaUrl.value
+        this.mediaUrl = form.mediaUrl.value
     }
 
     function BuildComment(form) {
         this.body = form.body.value,
-            this.mediaUrl = form.mediaUrl.value
+        this.mediaUrl = form.mediaUrl.value
     }
 
     this.getPosts = function getPosts(cb) {
         $.get(baseUrl + '/forum/view/posts')
             .then(res => {
+                res.userId = null
+                delete res.userId
                 posts = res
                 cb(posts)
             })

@@ -1,11 +1,5 @@
 function SwagController() {
     var swagService = new SwagService()
-    var posts = [{
-        votes: 0,
-        mediaUrl: "//placehold.it/200x200",
-        postTitle: "{type: String, required: true}",
-        createDate: Date.now()
-    }]
 
     var postFeedElem = document.getElementById('post-feed')
 
@@ -18,16 +12,18 @@ function SwagController() {
     }
 
     function drawPosts(posts) {
+        debugger
         var template = ''
         for (var i = 0; i < posts.posts.length; i++) {
             var post = posts.posts[i];
             template += `
             <div class="col-sm-10 blog-main">
+            <p>${post._id}</p>
                 <img src="${post.mediaUrl}" alt="" class="col-sm-2">
                 <div class="blog-post">
                     <h2 class="blog-post-title">${post.postTitle}</h2>
                     <p class="blog-post-meta">${post.createDate}
-                        <a href="#">${post.user}</a>
+                        <a href="#">${post.userId}</a>
                     </p>
                 </div>
                 <div class="votes">
