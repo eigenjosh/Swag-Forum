@@ -32,6 +32,9 @@ function SwagController(){
                     <span class = "glyphicon glyphicon-arrow-down"></span>
                 </div>
             </div>
+            <div class = "post-comments">
+                
+            </div>
             `
         }
         postFeedElem.innerHTML = template
