@@ -2,7 +2,7 @@ let router = require('express').Router()
 let Comments = require('../models/comment')
 
 
-router.get('/forum/comments', (req, res, next) => {
+router.get('/forum/posts/:id/comments', (req, res, next) => {
     Comments.find({})
         .then(comments => {
             res.send(comments)
@@ -12,7 +12,7 @@ router.get('/forum/comments', (req, res, next) => {
         })
 })
 
-router.get('/forum/comments/:id', (req, res, next) => {
+router.get('/forum/posts/:id/comments/:id', (req, res, next) => {
     Comments.findById(req.params.id)
         .then(comment => {
             res.send(comment)
@@ -22,7 +22,9 @@ router.get('/forum/comments/:id', (req, res, next) => {
         })
 })
 
-router.post('/forum/comments', (req, res, next) => {
+router.post('/forum/posts/:id/comments', (req, res, next) => {
+    req.body.userId = req.session.uid
+    req.body.postId = req.params.id
     Comments.create(req.body)
         .then(comment => {
             let response = {
@@ -37,11 +39,16 @@ router.post('/forum/comments', (req, res, next) => {
 })
 
 
-router.put('/forum/comments/:id', (req, res, next) => {
+router.put('/forum/posts/:id/comments/:id', (req, res, next) => {
     var action = 'Update Comment'
     Comments.findByIdAndUpdate(req.params.id, req.body)
-        .then(data => {
-            res.send(handleResponse(action, data))
+        .then(comment => {
+            console.log(comment.userId.toString(), req.session.uid.toString())
+            if (comment.userId.toString() == req.session.uid.toString()) {
+                comment.update()
+                res.send({ message: 'You\'ve updated your post!' })
+            }
+            next()
         })
         .catch(err => {
             res.status(400).send(handleResponse(action, null, err))
@@ -49,10 +56,15 @@ router.put('/forum/comments/:id', (req, res, next) => {
 })
 
 
-router.delete('/forum/comments/:id', (req, res, next) => {
+router.delete('/forum/posts/:id/comments/:id', (req, res, next) => {
     Comments.findByIdAndRemove(req.params.id)
-        .then(() => {
-            res.send({ message: 'So much for that comment' })
+        .then(comment => {
+            console.log(comment.userId.toString(), req.session.uid.toString())
+            if (comment.userId.toString() == req.session.uid.toString()) {
+                comment.remove()
+                res.send({ message: 'So much for that comment' })
+            }
+            next()
         })
         .catch(err => {
             res.status(400).send({ Error: err })
