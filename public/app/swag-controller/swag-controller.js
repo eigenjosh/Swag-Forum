@@ -54,7 +54,7 @@ function SwagController() {
                 <div class = "row" id="post-comments">
                     <div class = "col-md-10 outline">
                     <p>${comment.mediaUrl}</p>
-                    <h5 style="cursor: pointer"><strong>${comment.userId.username}</strong></h5>
+                    <h5><strong>${comment.userId.username}</strong></h5>
                     <h4>${comment.body}</h4>
                     </div>
                 </div>
