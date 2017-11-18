@@ -103,5 +103,7 @@ function SwagController() {
         var form = event.target
         swagService.createComment(form, postId, this.getComments)
     }
-
+    this.removeComment = function removeComment(postId,  commentId){
+        swagService.removeComment(postId, commentId, this.getComments)
+    }
 }

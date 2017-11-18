@@ -56,19 +56,12 @@ router.put('/forum/posts/:id/comments/:id', (req, res, next) => {
 })
 
 
-router.delete('/forum/posts/:id/comments/:id', (req, res, next) => {
-    Comments.findByIdAndRemove(req.params.id)
+router.delete('/forum/posts/:id/comments/:cid', (req, res, next) => {
+    Comments.findOneAndRemove({ userId: req.session.uid, _id: req.params.cid })
         .then(comment => {
-            console.log(comment.userId.toString(), req.session.uid.toString())
-            if (comment.userId.toString() == req.session.uid.toString()) {
-                comment.remove()
-                res.send({ message: 'So much for that comment' })
-            }
-            next()
+            res.send("I bet you a dollar, yo")
         })
-        .catch(err => {
-            res.status(400).send({ Error: err })
-        })
+
 })
 
 function handleResponse(action, data, error) {
