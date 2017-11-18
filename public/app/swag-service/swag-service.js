@@ -1,29 +1,40 @@
-function SwagService(){
+function SwagService() {
     var baseUrl = 'http://localhost:3000'
     var comments = []
     var posts = []
     var sessionUID = []
 
-    function logError(err){
+    function logError(err) {
         console.error(err)
     }
 
-    function Post(config){
+    function BuildUser(form) {
+        this.username = form.username.value,
+            this.email = form.email.value,
+            this.password = form.password.value
+    }
+
+    function Post(config) {
         this.postTitle = config.postTitle.value
-        this.mediaUrl= config.mediaUrl.value
+        this.mediaUrl = config.mediaUrl.value
     }
 
-    function Comment(config){
+    function Comment(config) {
 
     }
 
-    function getPosts(){
-       debugger
+    function getPosts(cb) {
+        debugger
         $.get(baseUrl, + '/forum/view/posts')
-        .then(res => {
-            posts = res
-            console.log(posts)
-        })
+            .then(res => {
+                posts = res
+                cb(posts)
+            })
+    }
+    this.regUser = function regUser(form, getPosts) {
+        newUser = new BuildUser(form)
+        $.post(baseUrl + '/register')
+        .then(getPosts)
     }
 
 
@@ -31,6 +42,6 @@ function SwagService(){
 
 
 
- getPosts()
-    
+    getPosts()
+
 }
