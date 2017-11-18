@@ -1,7 +1,3 @@
-import { Schema, Mongoose, model, modelNames } from "mongoose";
-import { Module } from "module";
-import { Server } from "http";
-
 function SwagService() {
     var baseUrl = 'http://localhost:3000'
     var comments = []
@@ -102,6 +98,11 @@ function SwagService() {
 		})
 			.then(getPosts())
 			.fail(logError)
+    }
+
+    this.addVote = function addVote(voteValue, id){
+        db.voteCount = 0
+        db.votes[id] =
     }
 
     this.tallyVotes = function tallyVotes(){

@@ -59,6 +59,11 @@ function SwagController() {
                     <h5><strong>${comment.userId.username}</strong></h5>
                     <h4>${comment.body}</h4>
                     </div>
+                    <div class="votes">
+                    <span class = "glyphicon glyphicon-arrow-up"></span>
+                    <span class = "vote-count">${post.votes}</span>
+                    <span class = "glyphicon glyphicon-arrow-down"></span>
+                </div>
                 </div>
             `;
             }
