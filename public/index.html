@@ -33,9 +33,21 @@
     <div class="container">
 
         <div class="blog-header">
-            <h1 class="blog-title">Doppelgangers</h1>
-            <p class="lead blog-description">explore lookalikes</p>
+            <h1 class="blog-title" onclick="location.href=location.href"><span style="cursor:pointer">Doppelgangers</span></h1>
+            <p class="lead blog-description" style="cursor: help">explore a random lookalike</p>
         </div>
+<div class="row">
+    <div class="col-xs-3 col-xs-offset-9">
+            <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                    <div id="myDropdown" class="dropdown-content">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                    </div>
+                  </div>
+         </div>
+    </div>
 
         <div class="row" id="post-feed">
         </div>
@@ -104,6 +116,8 @@
     </div>
     </div>
     </div>
+
+    
 
     <footer class="blog-footer">
     </footer>
