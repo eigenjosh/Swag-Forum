@@ -102,7 +102,7 @@ function SwagService() {
 
     this.addVote = function addVote(voteValue, id){
         db.voteCount = 0
-        db.votes[id] =
+        db.votes[id] = voteValue
     }
 
     this.tallyVotes = function tallyVotes(){
