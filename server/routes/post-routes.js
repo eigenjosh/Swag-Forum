@@ -1,27 +1,31 @@
 let router = require('express').Router()
+var Comments = require('../models/comment')
 let Posts = require('../models/post')
+var Users = require('../models/user')
 
 router.get('/forum/posts', (req, res, next) => {
     Posts.find({})
         .then(posts => {
-            posts.userId = null
-            delete posts.userId
-            res.send(posts)
+            Users.findById(posts.userId, 'username')
+            .then(users =>{
+                res.send(posts)
+            })
+        
         })
         .catch(err => {
             res.status(400).send({ Error: err })
         })
 })
 
-router.get('/forum/posts/:id', (req, res, next) => {
-    Posts.findById(req.params.id)
-        .then(post => {
-            res.send(post)
-        })
-        .catch(err => {
-            res.status(400).send({ Error: err })
-        })
-})
+// router.get('/forum/posts/:id', (req, res, next) => {
+//     Posts.findById(req.params.id)
+//         .then(post => {
+//             res.send(post)
+//         })
+//         .catch(err => {
+//             res.status(400).send({ Error: err })
+//         })
+// })
 // GET COMMENTS BY POSTID
 // router.get('/forum/posts/:id/comments', (req, res, next) => {
 //     Comments.find({postId: req.params.id})
@@ -65,6 +69,34 @@ router.put('/forum/posts/:id', (req, res, next) => {
         })
 })
 
+router.get('/forum/posts/:id/comments', (req, res, next) => {
+    var view = {}
+    Posts.findById(req.params.id)
+        .then(post => {
+            Users.findById(post.userId, 'username')
+                .then(user => {
+                    post.userId = user
+                    view.posts = post
+                    Comments.find({ postId: post._id }).populate({
+                        path: 'userId',
+                        model: 'User',
+                        select: { 'username': 1 }
+
+                    })
+                        .then(comments => {
+                            var temp = []
+                            for (comment in comments) {
+                                Users.findById(comment.userId)
+                            }
+                            view.comments = comments
+                            res.send(view)
+                        })
+
+                        .catch()
+                })
+        })
+        .catch()
+})
 
 router.delete('/forum/posts/:id', (req, res, next) => {
 

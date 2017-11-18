@@ -1,4 +1,5 @@
 var Comments = require('../models/comment')
+var Users = require('../models/user')
 var Posts = require('../models/post')
 var router = require('express').Router()
 
@@ -6,8 +7,6 @@ router.get('/forum/view/posts', (req, res, next) => {
     var view = {}
     Posts.find({})
         .then(post => {
-            post.userId = null
-            delete post.userId
             view.posts = post
             res.send(view)
         })
@@ -17,17 +16,30 @@ router.get('/forum/view/posts', (req, res, next) => {
 })
 
 router.get('/forum/view/posts/:id/comments', (req, res, next) => {
-    var view = {}    
+    var view = {}
     Posts.findById(req.params.id)
         .then(post => {
-            view.posts = post
-            Comments.find({ postId: req.params.id })
-                .then(comments => {
-                    view.comments = comments
-                    res.send(view)
-                })
+            Users.findById(post.userId, 'username')
+                .then(user => {
+                    post.userId = user
+                    view.posts = post
+                    Comments.find({ postId: post._id }).populate({
+                        path: 'userId',
+                        model: 'User',
+                        select: { 'username': 1 },
 
-                .catch()
+                    })
+                        .then(comments => {
+                            var temp = []
+                            for (comment in comments) {
+                                Users.findById(comment.userId)
+                            }
+                            view.comments = comments
+                            res.send(view)
+                        })
+
+                        .catch()
+                })
         })
         .catch()
 })

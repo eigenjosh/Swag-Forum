@@ -17,13 +17,14 @@ function SwagController() {
             var post = posts.posts[i];
             template += `
             <div class="col-sm-10 blog-main">
-            <p>${post._id}</p>
+            <p>${post.userId}</p>
                 <img src="${post.mediaUrl}" alt="" class="col-sm-2">
                 <div class="blog-post">
                     <h2 class="blog-post-title">${post.postTitle}</h2>
                     <p class="blog-post-meta">${post.createDate}
                         <a href="#">${post.username}</a>
                     </p>
+                    <button onclick="app.controllers.swagController.getComments('${post._id}')">View</button>
                 </div>
                 <div class="votes">
                     <span class = "glyphicon glyphicon-arrow-up"></span>
@@ -32,7 +33,7 @@ function SwagController() {
                 </div>
             </div>
             <div class = "post-comments">
-                <button onclick="app.controllers.swagController.getComments('${post._id}')">View</button>
+                
             </div>
             `
         }
@@ -53,10 +54,9 @@ function SwagController() {
             template += `
                 <div class = "row" id="post-comments">
                     <div class = "col-md-10">
-                    <p>${comment._id}</p>
                     <p>${comment.mediaUrl}</p>
                     <h5>${comment.body}</h5>
-                    <h4>${comment.username}</h4>
+                    <h4>${comment.userId.username}</h4>
                     </div>
                 </div>
             `;
