@@ -18,29 +18,13 @@ function SwagService(){
     }
 
     function getPosts(){
-       debugger 
+       debugger
         $.get(baseUrl, + '/forum/view/posts')
         .then(res => {
             posts = res
             console.log(posts)
         })
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
