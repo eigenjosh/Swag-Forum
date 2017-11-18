@@ -50,8 +50,13 @@ router.post('/forum/posts', (req, res, next) => {
 router.put('/forum/posts/:id', (req, res, next) => {
     var action = 'Update Post'
     Posts.findByIdAndUpdate(req.params.id, req.body)
-        .then(data => {
-            res.send(handleResponse(action, data))
+        .then(post => {
+            console.log(post.userId.toString(), req.session.uid.toString())
+            if (post.userId.toString() == req.session.uid.toString()) {
+                post.update()
+                res.send({ message: 'You\'ve updated your post!' })
+            }
+            next()
         })
         .catch(err => {
             res.status(400).send(handleResponse(action, null, err))
@@ -62,9 +67,9 @@ router.put('/forum/posts/:id', (req, res, next) => {
 router.delete('/forum/posts/:id', (req, res, next) => {
 
     Posts.findById(req.params.id)
-        .then( post => {
+        .then(post => {
             console.log(post.userId.toString(), req.session.uid.toString())
-            if(post.userId.toString() == req.session.uid.toString()){
+            if (post.userId.toString() == req.session.uid.toString()) {
                 post.remove()
                 res.send({ message: 'So much for that post' })
             }
