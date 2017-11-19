@@ -44,6 +44,7 @@ function SwagController() {
     getPosts()
 
     function drawComments(comments) {
+        debugger
         var template = `<img class="image-temp col-md-8" src="${comments.posts.mediaUrl}">`;
         if (comments.comments.length !== 0) {
             for (i = 0; i < comments.comments.length; i++) {
@@ -61,7 +62,7 @@ function SwagController() {
                     </div>
                     <div class="votes">
                     <span class = "glyphicon glyphicon-arrow-up"></span>
-                    <span class = "vote-count">${post.votes}</span>
+                    <span class = "vote-count">${comment.voteCount}</span>
                     <span class = "glyphicon glyphicon-arrow-down"></span>
                 </div>
                 </div>
