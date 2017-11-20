@@ -61,7 +61,7 @@ function SwagController() {
                     </div>
                     <div class="votes">
                     <span class = "glyphicon glyphicon-arrow-up"></span>
-                    <span class = "vote-count">${post.votes}</span>
+                    <span class = "vote-count">${comment.voteCount}</span>
                     <span class = "glyphicon glyphicon-arrow-down"></span>
                 </div>
                 </div>
