@@ -44,7 +44,6 @@ function SwagController() {
     getPosts()
 
     function drawComments(comments) {
-        debugger
         var template = `<img class="image-temp col-md-8" src="${comments.posts.mediaUrl}">`;
         if (comments.comments.length !== 0) {
             for (i = 0; i < comments.comments.length; i++) {
